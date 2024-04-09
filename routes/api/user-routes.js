@@ -55,7 +55,7 @@ router.delete('/:id', async (req, res) => {
 
     router.post('/:userId/friends/:friendId', async (req, res) => {
         try {
-        const result = await User.findOneAndUpdate({ _id: req.params.id }, {$addToSet:{friends: req.params.friendId}},{new:true})
+        const result = await User.findOneAndUpdate({ _id: req.params.userId }, {$addToSet:{friends: req.params.friendId}},{new:true})
         res.status(200).json(result)
         } catch (err) {
             res.status(500).json({error: 'Something went wrong'})
@@ -64,7 +64,7 @@ router.delete('/:id', async (req, res) => {
 
     router.delete('/:userId/friends/:friendId', async (req, res) => {
         try {
-        const result = await User.findOneAndUpdate({ _id: req.params.id }, {$pull:{friends: req.params.friendId}},{new:true})
+        const result = await User.findOneAndUpdate({ _id: req.params.userId }, {$pull:{friends: req.params.friendId}},{new:true})
         res.status(200).json(result)
         } catch (err) {
             res.status(500).json({error: 'Something went wrong'})
